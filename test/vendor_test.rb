@@ -19,4 +19,13 @@ class VendorTest < Minitest::Test
     assert_equal "Rocky Mountain Fresh", @vendor.name
     assert_equal Hash.new, @vendor.inventory
   end
+
+  def test_check_stock_and_add_stock
+    assert_equal 0, @vendor.check_stock(@item1)
+    @vendor.stock(@item1, 30)
+    assert_equal 30, @vendor.check_stock(@item1)
+    @vendor.stock(@item1, 25)
+    assert_equal 55, @vendor.check_stock(@item1)
+    @vendor.stock(@item2, 12)
+  end
 end
